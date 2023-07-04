@@ -11,7 +11,7 @@ from ModifiedAlgorithm.DensityPeak_ import DensityPeak,DensityPeak_Auto_Adaptive
 from ModifiedAlgorithm.DBSCAN_ import DBSCAN,DBSCAN_Auto_Adaptive
 from ModifiedAlgorithm.DADC_ import DADC,DADC_Auto_Adaptive
 from ModifiedAlgorithm.HCDC_ import HCDC,HCDC_Auto_Adaptive
-from GranularBallGeneration.GranularBallGeneration import HBC
+from GranularBallGeneration.GranularBallGeneration import GBC
 from Tools.Plot import plot_dot
 from AlgorithmParameters import Parameters
 import warnings
@@ -67,7 +67,7 @@ def modify_DPeak(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = HBC(data)
+        hb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
         ballCenters, ballIndex = get_ballIndex(data,hb_list_temp)
         data = ballCenters
