@@ -1,7 +1,7 @@
 # MNGR
 A Multi-Granularity Neighbor Relationship and Its Application in KNN Classification and Clustering Methods
 ## MGKNN
-Improve the KNN method by combining the granular-ball model and neighbor relationship to achieve adaptive estimation of the $k$ value.
+Improve the KNN method by combining the granular-ball model and multi-granularity neighbor relationship to achieve adaptive estimation of the $k$ value.
 ### Files
 These program mainly containing:
   - a  real dataset folder named "datasets".
