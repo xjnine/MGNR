@@ -207,7 +207,7 @@ def modify_DADC(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = HBC(data)
+        hb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
         ballCenters, ballIndex = get_ballIndex(data,hb_list_temp)
         data = ballCenters
@@ -277,7 +277,7 @@ def modify_HCDC(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = HBC(data)
+        hb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
         ballCenters,ballIndex=get_ballIndex(data,hb_list_temp)
         data = ballCenters
