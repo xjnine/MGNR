@@ -42,6 +42,6 @@ class MGKNN():
         for d in data:
             for key, value in group.items():
                     if np.any(np.all(d == value, axis=1)):
-                        adaptive_k.append(hbnc[key])
+                        adaptive_k.append(gbnc[key])
 
         return adaptive_k
