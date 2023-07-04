@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 from Tools.Plot import plot_dot, draw_ball
 
 
-def division(hb_list, hb_list_not):
+def division(gb_list, gb_list_not):
     gb_list_new = []
-    for hb in hb_list:
+    for hb in gb_list:
         if len(hb) > 1:
             ball_1, ball_2 = spilt_ball(hb)
             dm_parent = get_dm(hb)
@@ -25,12 +25,12 @@ def division(hb_list, hb_list_not):
             if t2:
                 gb_list_new.extend([ball_1, ball_2])
             else:
-                hb_list_not.append(hb)
+                gb_list_not.append(hb)
         else:
-            hb_list_not.append(hb)
-    return gb_list_new, hb_list_not
+            gb_list_not.append(hb)
+    return gb_list_new, gb_list_not
 
-
+# original splitting method
 def spilt_ball2(data):
     ball1 = []
     ball2 = []
@@ -55,7 +55,7 @@ def spilt_ball2(data):
     ball1 = np.array(ball1)
     ball2 = np.array(ball2)
     return [ball1, ball2]
-
+# O(nlogn) splitting method
 def spilt_ball(data):
     center = data.mean(0)
     ball1 = []
@@ -112,58 +112,52 @@ def get_radius(hb):
 
 
 
-def normalized_ball(hb_list, hb_list_not, radius_detect):
-    hb_list_temp = []
-    for hb in hb_list:
+def normalized_ball(gb_list, gb_list_not, radius_detect):
+    gb_list_temp = []
+    for hb in gb_list:
         if len(hb) < 2:
-            hb_list_not.append(hb)
+            gb_list_not.append(hb)
         else:
             if get_radius(hb) <= 2 * radius_detect:
-                hb_list_not.append(hb)
+                gb_list_not.append(hb)
             else:
                 ball_1, ball_2 = spilt_ball(hb)
-                hb_list_temp.extend([ball_1, ball_2])
+                gb_list_temp.extend([ball_1, ball_2])
 
-    return hb_list_temp, hb_list_not
+    return gb_list_temp, gb_list_not
 
 
 def GBC(data):
 
-    hb_list_temp = [data]
-    hb_list_not_temp = []
-    # 按照质量分化
+    gb_list_temp = [data]
+    gb_list_not_temp = []
+    
+    # divide by DM
     while 1:
-        ball_number_old = len(hb_list_temp) + len(hb_list_not_temp)
-        hb_list_temp, hb_list_not_temp = division(hb_list_temp, hb_list_not_temp)
-        ball_number_new = len(hb_list_temp) + len(hb_list_not_temp)
+        ball_number_old = len(gb_list_temp) + len(gb_list_not_temp)
+        gb_list_temp, gb_list_not_temp = division(gb_list_temp, gb_list_not_temp)
+        ball_number_new = len(gb_list_temp) + len(gb_list_not_temp)
         if ball_number_new == ball_number_old:
-            hb_list_temp = hb_list_not_temp
+            gb_list_temp = gb_list_not_temp
             break
 
-            # 全局归一化
     radius = []
-    for hb in hb_list_temp:
+    for hb in gb_list_temp:
         if len(hb) >= 2:
             radius.append(get_radius(hb))
     radius_median = np.median(radius)
     radius_mean = np.mean(radius)
     radius_detect = max(radius_median, radius_mean)
-    hb_list_not_temp = []
+    gb_list_not_temp = []
     while 1:
-        ball_number_old = len(hb_list_temp) + len(hb_list_not_temp)
-        hb_list_temp, hb_list_not_temp = normalized_ball(hb_list_temp, hb_list_not_temp, radius_detect)
-        ball_number_new = len(hb_list_temp) + len(hb_list_not_temp)
+        ball_number_old = len(gb_list_temp) + len(gb_list_not_temp)
+        gb_list_temp, gb_list_not_temp = normalized_ball(gb_list_temp, gb_list_not_temp, radius_detect)
+        ball_number_new = len(gb_list_temp) + len(gb_list_not_temp)
         if ball_number_new == ball_number_old:
-            hb_list_temp = hb_list_not_temp
+            gb_list_temp = gb_list_not_temp
             break
-    # 画出粒球覆盖情况
+    # draw the pic of data points covered by granular-ball
     # plot_dot(data,show=False)
-    # draw_ball(hb_list_temp)
+    # draw_ball(gb_list_temp)
 
-
-
-
-
-
-
-    return hb_list_temp
+    return gb_list_temp
