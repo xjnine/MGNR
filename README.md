@@ -13,10 +13,10 @@ These program mainly containing:
 Improve the density-based clustering methods by combining the granular ball model and multi-granularity neighbor relationship to achieve adaptive density estimation for each sample.
 ### Files
 These program mainly containing:
-- proposed algorithms folder named "ProposedAlgorithm" containing $NARD$ and $SDGS$.
-- all modified algorithms folder named "ModifiedAlgorithm" containing $DensityPeak$, $DBSCAN$, $DADC$ and $HCDC$.
-- a python file named "run.py" in folder named "ModifiedAlgorithm" is the main function file.
-- other python files
+  - proposed algorithms folder named "ProposedAlgorithm" containing $NARD$ and $SDGS$.
+  - all modified algorithms folder named "ModifiedAlgorithm" containing $DensityPeak$, $DBSCAN$, $DADC$ and $HCDC$.
+  - a python file named "run.py" in folder named "ModifiedAlgorithm" is the main function file.
+  - other python files
 ### Usage
 Run the run.py to test the code on the synthetic dataset or real dataset and evaluate the clustering results.
 ## Requirements
