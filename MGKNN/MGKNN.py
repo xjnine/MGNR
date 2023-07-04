@@ -29,14 +29,14 @@ class MGKNN():
             else:
                 group[label] = gb_cluster[i].data
 
-        hbnc = {}
+        gbnc = {}
         for key in group.keys():
             D1 = group[key]
             D2 = D1.T
             A = self.getDistance(D2)
             NNtool = NNSearch(A)
             t, nn, rnn, dis_index = NNtool.natural_search()
-            hbnc[key] = t + 1
+            gbnc[key] = t + 1
 
         adaptive_k = []
         for d in data:
