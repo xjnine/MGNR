@@ -88,7 +88,6 @@ def real_test():
         'Automobile.csv',
         'Balance Scale.csv',
         'biodeg.csv',
-        'Car Evaluation.csv',
         'chess.csv',
         'Credit Approval.csv',
         'Ionosphere.csv',
@@ -104,7 +103,6 @@ def real_test():
         'Automobile':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
         'Balance Scale':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
         'biodeg':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
-        'Car Evaluation':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
         'chess':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
         'Credit Approval':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
         'Ionosphere':np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).astype('float64'),
@@ -122,7 +120,8 @@ def real_test():
 
     run_time = 1
     for dataSet in data_dict:
-        if dataSet == "cell.csv":
+        # only test the dataset named "xxx.csv"
+        if dataSet != "cell.csv":
             continue
         data, label = loadRealData("../CompareDatasets", datasetKey=dataSet)
         #将真实数据降维后聚类

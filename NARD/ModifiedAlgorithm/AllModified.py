@@ -37,14 +37,14 @@ def my_acc(y_true, y_pred):
     ind=np.transpose(ind)
     return sum([w[i, j] for i, j in ind]) * 1.0 / y_pred.size
 
-def get_ballIndex(data,hb_list_temp):
+def get_ballIndex(data,gb_list_temp):
     # 添加球覆盖的数据的index给ball_index
     ball_index = {}
     ballCenters = []
     #得到球里面包含的数据的index
     for i, d in enumerate(data):
         flag = 0
-        for j, ball in enumerate(hb_list_temp):
+        for j, ball in enumerate(gb_list_temp):
             if flag:
                 break
             for b in ball:
@@ -54,7 +54,7 @@ def get_ballIndex(data,hb_list_temp):
                     flag = 1
                     break
     #得到新的球心数据集
-    for ball in hb_list_temp:
+    for ball in gb_list_temp:
         center = ball.mean(0)
         ballCenters.append(center)
     ballCenters=np.array(ballCenters)
@@ -67,9 +67,9 @@ def modify_DPeak(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = GBC(data)
+        gb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
-        ballCenters, ballIndex = get_ballIndex(data,hb_list_temp)
+        ballCenters, ballIndex = get_ballIndex(data,gb_list_temp)
         data = ballCenters
         NARD_startTime = time.time()
         distanceMartix = compute_DisMatrix(data)
@@ -140,9 +140,9 @@ def modify_DBSCAN(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = GBC(data)
+        gb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
-        ballCenters, ballIndex = get_ballIndex(data,hb_list_temp)
+        ballCenters, ballIndex = get_ballIndex(data,gb_list_temp)
         data = ballCenters
         NARD_startTime = time.time()
         distanceMartix = compute_DisMatrix(data)
@@ -207,9 +207,9 @@ def modify_DADC(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = GBC(data)
+        gb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
-        ballCenters, ballIndex = get_ballIndex(data,hb_list_temp)
+        ballCenters, ballIndex = get_ballIndex(data,gb_list_temp)
         data = ballCenters
         NARD_startTime = time.time()
         distanceMartix = compute_DisMatrix(data)
@@ -277,9 +277,9 @@ def modify_HCDC(data,label,parameter,usingBall=True,plot=True):
     if usingBall:
         originalData = data
         NARD_startTime = time.time()
-        hb_list_temp = GBC(data)
+        gb_list_temp = GBC(data)
         ball_cost_time = time.time() - NARD_startTime
-        ballCenters,ballIndex=get_ballIndex(data,hb_list_temp)
+        ballCenters,ballIndex=get_ballIndex(data,gb_list_temp)
         data = ballCenters
         NARD_startTime = time.time()
         distanceMartix = compute_DisMatrix(data)
