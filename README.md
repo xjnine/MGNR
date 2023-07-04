@@ -14,7 +14,7 @@ Improve the density-based clustering methods by combining the granular bal
 ### Files
 These program mainly containing:
 - proposed algorithms folder named "ProposedAlgorithm" containing $NARD$ and $SDGS$.
-- all modified algorithms folder named "ModifiedAlgorithm" containing $DensityPeak$ 、$DBSCAN$ 、$DADC$ 、$HCDC$.
+- all modified algorithms folder named "ModifiedAlgorithm" containing $DensityPeak$, $DBSCAN$, $DADC$ and $HCDC$.
 - a python file named "run.py" in folder named "ModifiedAlgorithm" is the main function file.
 - other python files
 ### Usage
