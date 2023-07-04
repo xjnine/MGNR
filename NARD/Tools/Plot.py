@@ -57,9 +57,9 @@ def plot_dot(data, label=[],text=[],display_text=False,show=True,marker='o',s=10
     if show:
         plt.show()
 
-def draw_ball(hb_list):
+def draw_ball(gb_list):
     is_isolated = False
-    for data in hb_list:
+    for data in gb_list:
         if len(data) > 1:
             center = data.mean(0)
             radius = np.max((((data - center) ** 2).sum(axis=1) ** 0.5))
