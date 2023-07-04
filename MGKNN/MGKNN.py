@@ -1,5 +1,5 @@
 from Naturalneighbor import *
-from GBC import *
+from GranularBallGeneration import *
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
