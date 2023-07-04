@@ -5,7 +5,7 @@ Improve the KNN method by combining the granular-ball model and neighbor relatio
 ### Files
 These program mainly containing:
   - a  real dataset folder named "datasets".
-  - a python file named “main.py” is the main function file.
+  - a python file named "main.py" is the main function file.
   - other python files
 ### Usage
   Run the main.py to test the code on the dataset and evaluate the classification results using ACC scores.
@@ -15,7 +15,7 @@ Improve the density-based clustering methods by combining the granular bal
 These program mainly containing:
 - proposed algorithms folder named "ProposedAlgorithm" containing $NARD$ and $SDGS$.
 - all modified algorithms folder named "ModifiedAlgorithm" containing $DensityPeak$ 、$DBSCAN$ 、$DADC$ 、$HCDC$.
-- a python file named “run.py” in folder named "ModifiedAlgorithm" is the main function file.
+- a python file named "run.py" in folder named "ModifiedAlgorithm" is the main function file.
 - other python files
 ### Usage
 Run the run.py to test the code on the synthetic dataset or real dataset and evaluate the clustering results.
