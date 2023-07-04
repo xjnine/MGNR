@@ -11,10 +11,10 @@ from Tools.Plot import plot_dot, draw_ball
 
 def division(gb_list, gb_list_not):
     gb_list_new = []
-    for hb in gb_list:
-        if len(hb) > 1:
-            ball_1, ball_2 = spilt_ball(hb)
-            dm_parent = get_dm(hb)
+    for gb in gb_list:
+        if len(gb) > 1:
+            ball_1, ball_2 = spilt_ball(gb)
+            dm_parent = get_dm(gb)
             dm_child_1 = get_dm(ball_1)
             dm_child_2 = get_dm(ball_2)
             w = len(ball_1) + len(ball_2)
@@ -25,9 +25,9 @@ def division(gb_list, gb_list_not):
             if t2:
                 gb_list_new.extend([ball_1, ball_2])
             else:
-                gb_list_not.append(hb)
+                gb_list_not.append(gb)
         else:
-            gb_list_not.append(hb)
+            gb_list_not.append(gb)
     return gb_list_new, gb_list_not
 
 # original splitting method
@@ -80,12 +80,12 @@ def spilt_ball(data):
     ball1 = np.array(ball1)
     ball2 = np.array(ball2)
     return [ball1, ball2]
-def get_dm(hb):
-    num = len(hb)
+def get_dm(gb):
+    num = len(gb)
     if num==0:
         return 0
-    center = hb.mean(0)
-    diff_mat = center - hb
+    center = gb.mean(0)
+    diff_mat = center - gb
     sq_diff_mat = diff_mat ** 2
     sq_distances = sq_diff_mat.sum(axis=1)
     distances = sq_distances ** 0.5
@@ -99,10 +99,10 @@ def get_dm(hb):
         return 1
 
 
-def get_radius(hb):
-    num = len(hb)
-    center = hb.mean(0)
-    diff_mat = center - hb
+def get_radius(gb):
+    num = len(gb)
+    center = gb.mean(0)
+    diff_mat = center - gb
     sq_diff_mat = diff_mat ** 2
     sq_distances = sq_diff_mat.sum(axis=1)
     distances = sq_distances ** 0.5
@@ -114,14 +114,14 @@ def get_radius(hb):
 
 def normalized_ball(gb_list, gb_list_not, radius_detect):
     gb_list_temp = []
-    for hb in gb_list:
-        if len(hb) < 2:
-            gb_list_not.append(hb)
+    for gb in gb_list:
+        if len(gb) < 2:
+            gb_list_not.append(gb)
         else:
-            if get_radius(hb) <= 2 * radius_detect:
-                gb_list_not.append(hb)
+            if get_radius(gb) <= 2 * radius_detect:
+                gb_list_not.append(gb)
             else:
-                ball_1, ball_2 = spilt_ball(hb)
+                ball_1, ball_2 = spilt_ball(gb)
                 gb_list_temp.extend([ball_1, ball_2])
 
     return gb_list_temp, gb_list_not
@@ -142,9 +142,9 @@ def GBC(data):
             break
 
     radius = []
-    for hb in gb_list_temp:
-        if len(hb) >= 2:
-            radius.append(get_radius(hb))
+    for gb in gb_list_temp:
+        if len(gb) >= 2:
+            radius.append(get_radius(gb))
     radius_median = np.median(radius)
     radius_mean = np.mean(radius)
     radius_detect = max(radius_median, radius_mean)
