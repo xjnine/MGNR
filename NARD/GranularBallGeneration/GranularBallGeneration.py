@@ -127,7 +127,7 @@ def normalized_ball(hb_list, hb_list_not, radius_detect):
     return hb_list_temp, hb_list_not
 
 
-def HBC(data):
+def GBC(data):
 
     hb_list_temp = [data]
     hb_list_not_temp = []
